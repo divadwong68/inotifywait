@@ -1,4 +1,5 @@
 #!/bin/bash
+# Uses sudo apt install inotify-tools
 
 WATCH_DIR="/$HOME/Documents"
 SYNCTO="myremote:mysyncshare"
