@@ -1,8 +1,9 @@
 #!/bin/bash
 
 WATCH_DIR="/$HOME/Documents"
-RCLONE_LOG="$HOME/testdetectsync.log"
-EVENT_LOG="$HOME/testdetect-events.log"
+SYNCTO="myremote:mysyncshare"
+RCLONE_LOG="$HOME/_detect-sync.log"
+EVENT_LOG="$HOME/_detect-events.log"
 DELAY=60
 
 inotifywait -m -r -e modify,create,delete,move \
@@ -21,5 +22,5 @@ while read -r line; do
 
     # After timeout ends, the directory has been quiet for 60 seconds
     echo "$(date '+%Y-%m-%d %H:%M:%S') | Syncing now..." >> "$EVENT_LOG"
-    #rclone sync "$WATCH_DIR" remote:Documents --log-file="$RCLONE_LOG" --log-level INFO
+    rclone sync "$WATCH_DIR" $SYNCTO --log-file="$RCLONE_LOG" --log-level INFO
 done
