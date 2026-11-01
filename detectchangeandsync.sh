@@ -18,7 +18,7 @@ while read -r line; do
     # Also log them so you can see what was absorbed during the wait.
     timeout "$DELAY" cat |
     while read -r absorbed; do
-        echo "$(date '+%Y-%m-%d %H:%M:%S') | ABSORBED: $absorbed" >> "$EVENT_LOG"
+        echo "$absorbed" >> "$EVENT_LOG"
     done
 
     # After timeout ends, the directory has been quiet for 60 seconds
